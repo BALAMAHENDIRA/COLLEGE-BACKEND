@@ -1,0 +1,41 @@
+<h1>Departments List</h1>
+
+<!-- <button class="bubbly-button" (click)="viewform(1)" >ADD</button> -->
+<a  [routerLink]="[]" (click)="viewform(1)" ><i class="fa-solid fa-circle-plus  fa-2x" ></i></a>
+
+  <div class="container" *ngIf="tabIndex === 1" style="width: 300px; ">
+    <h2 style="color: rgb(17, 200, 0);">Add Department</h2>
+   <form #form="ngForm">
+    <div class="form-group">
+    <label for="deptName" style="color: white;">Department</label>
+    <input id="deptName" name="deptName" (blur)="deptvalid($event)" class="form-control" [(ngModel)]="department.deptName"/>
+   </div>
+ <h6 style="color: red;">{{departerror}}</h6>
+  
+  
+ 
+    <button class="btn btn-primary" (click)="postdata(form)" *ngIf="buttonview === 1">Add Department</button>
+      <button class="btn btn-primary" (click)="updatedata(form)" *ngIf="buttonview === 0">Update Department</button>   
+   
+   </form>
+   </div>
+
+<!-- LIST -->
+<table class="rwd-table" >
+    <tr>
+      <th>Department Id</th>
+      <th>Department Name</th>
+    </tr>
+    <tr *ngFor="let item of departments" >
+      <th style="color: white;">{{item.deptId}}</th>
+      <th style="color: white;">{{item.deptName}}</th>
+     
+     <th> <a [routerLink]="[]" (click)="Edit(item)"><i class="fa-solid fa-pen-to-square"></i></a></th>
+  
+     <th> <a [routerLink]="[]" (click)="Delete(item)"  ><i class="fa-solid fa-trash-can"></i></a></th>
+     
+    </tr>
+    
+  </table>
+
+  

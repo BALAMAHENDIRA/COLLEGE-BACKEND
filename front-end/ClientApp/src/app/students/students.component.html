@@ -1,0 +1,125 @@
+<h1>Students List</h1>
+<!-- DROP DOWN FOR FILTER -->
+ 
+ <h3 style="float: right; color:aliceblue">Filter</h3>
+  <select style="width: 300px; float:right" (change)="filter($event)" class="form-select" #deptId="ngModel" name="deptId"  [(ngModel)]="student.deptId" required>
+      
+      <option value="{{dept.deptId}}"  *ngFor="let dept of departments">{{dept.deptName}}</option>
+  </select>
+  <br>
+  <br>
+
+<a  [routerLink]="[]" (click)="viewform(1)" ><i class="fa-solid fa-circle-plus  fa-2x" ></i></a>
+
+<div class="container" *ngIf="tabIndex === 1" style="width: 300px;">
+  <h2 style="color: rgb(17, 200, 0);">STUDENT FORM</h2>
+ <form #form="ngForm">
+  <div class="form-group">
+  <label for="name" style="color: white;">Name</label>
+  <input id="name" name="name" (blur)="uservalid($event)" class="form-control" minlength="4" #name="ngModel" [(ngModel)]="student.name"/>
+ <h6 style="color: red;">{{Usererror}}</h6>
+ 
+ <div class="form-group">
+  <label for="email" style="color: white;">E-Mail</label>
+  <input id="email" name="email" (blur)="Emailvalid($event)" class="form-control" [(ngModel)]="student.email"/>
+ </div>
+ <h6 style="color: red;">{{Emailerror}}</h6>
+
+ <div class="form-group">
+  <label for="phone" style="color: white;">Phone Number</label>
+  <input type="text" id="phone" name="phone" (blur)="phonevalid($event)" class="form-control" [(ngModel)]="student.phone"/>
+ </div>
+ <h6 style="color: red;">{{Phoneerror}}</h6>
+ <div class="form-group">
+  <label for="rollNumber" style="color: white;">Roll Number</label>
+  <input id="rollNumber" name="rollNumber"  (blur)="Rollvalid($event)" class="form-control" [(ngModel)]="student.rollNumber"/>
+ </div>
+ <h6 style="color: red;">{{Rollerror}}</h6>
+
+ <div class="form-group">
+  <label for="password" style="color: white;">Password</label>
+  <input type="password" id="password" name="password" (blur)="passvalid($event)"  #password="ngModel"  minlength="6" class="form-control" [(ngModel)]="student.password" required/>
+ </div>
+ <h6 style="color: red;">{{Passerror}}</h6>
+  
+</div>
+ <div class="form-group">
+  <label for="dob" style="color: white;">DOB</label>
+  <input type="date" id="dob" name="dob"    class="form-control" [(ngModel)]="student.dob"/>
+ </div>
+ <div class="form-group">
+  <label for="address" style="color: white;">Address</label>
+  <input id="address" name="address" class="form-control" [(ngModel)]="student.address"/>
+ </div>
+ <div class="form-group">
+  <label for="currentYear" style="color: white;">YEAR</label>
+  <input id="currentYear" name="currentYear" (blur)="Yearvalid($event)" class="form-control" [(ngModel)]="student.currentYear"/>
+ </div>
+ 
+ <h6 style="color: red;">{{Yearerror}}</h6>
+ 
+ <div class="mb-3">
+  <label for="deptId" class="form-label" style="color: white;">Department</label>
+  <select class="form-select" #deptId="ngModel" name="deptId" [(ngModel)]="student.deptId" required>
+      
+      <option value="{{dept.deptId}}" *ngFor="let dept of departments">{{dept.deptName}}</option>
+  </select>
+ <h6 style="color: red;">{{departerror}}</h6>
+
+</div>
+ <div class="mb-3">
+  <label for="courseId" class="form-label" style="color: white;">Courses</label>
+  <select class="form-select" #courseId="ngModel" name="courseId" [(ngModel)]="student.courseId" required>
+      
+      <option value="{{dept.courseId}}" *ngFor="let dept of courses">{{dept.courseName}}</option>
+  </select>
+ <h6 style="color: red;" >{{courseerror}}</h6>
+
+</div>
+  <button class="btn btn-primary" (click)="postdata(form)" *ngIf="buttonview === 1">Add Student</button>
+  <button class="btn btn-primary" (click)="updatedata(form)" *ngIf="buttonview === 0">Update Student</button>
+
+ </form>
+ </div>
+
+<!-- LIST -->
+<table class="rwd-table" >
+  <tr>
+    <th>Student Id</th>
+    <th>Student Name</th>
+    <th>Roll Number</th>
+
+    <th>Email</th>
+    <th>Phone Number</th>
+    
+    <th>dob</th>
+    
+    <th>Department</th>
+    <th>Year</th>
+  
+  </tr>
+  <tr *ngFor="let item of students" >
+    <th style="color: white;">{{item.studentId}}</th>
+    <th style="color: white;">{{item.name}}</th>
+    <th style="color: white;">{{item.rollNumber}}</th>
+
+    <th style="color: white;">{{item.email}}</th>
+    <th style="color: white;">{{item.phone}}</th>
+    <th style="color: white;">{{item.dob}}</th>
+    <th style="color: white;">{{item.deptName}}</th>  
+    <th style="color: white;">{{item.currentYear}}</th>
+   <th> <a [routerLink]="[]" (click)="Edit(item)"><i class="fa-solid fa-pen-to-square"></i></a></th>
+
+   <th> <a [routerLink]="[]" (click)="Delete(item)"><i class="fa-solid fa-trash-can"></i></a></th>
+   
+  </tr>
+  
+</table>
+
+
+ <!-- <h3>{{student | json}}</h3> -->
+
+
+
+
+ 

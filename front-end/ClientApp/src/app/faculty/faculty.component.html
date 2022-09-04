@@ -1,0 +1,83 @@
+<h1>FACULTY </h1>
+
+<a  [routerLink]="[]" (click)="viewform(1)" ><i class="fa-solid fa-circle-plus  fa-2x" ></i></a>
+
+  <div class="container" *ngIf="tabIndex === 1" style="width: 300px; ">
+    <h2 style="color: rgb(17, 200, 0);">Add Faculty</h2>
+   <form #form="ngForm">
+    <div class="form-group">
+    <label for="name" style="color: white;">Faculty Name</label>
+    <input id="name" name="name" (blur)="uservalid($event)" class="form-control" [(ngModel)]="faculty.name"/>
+   </div>
+ <h6 style="color: red;">{{Usererror}}</h6>
+
+   <div class="form-group">
+    <label for="phone" style="color: white;">Faculty Phone</label>
+    <input id="phone" name="phone" (blur)="phonevalid($event)" class="form-control" [(ngModel)]="faculty.phone"/>
+   </div>
+ <h6 style="color: red;">{{Phoneerror}}</h6>
+
+   <div class="form-group">
+    <label for="email" style="color: white;">  email</label>
+    <input id="email" name="email" class="form-control" (blur)="Emailvalid($event)" [(ngModel)]="faculty.email"/>
+   </div>
+ <h6 style="color: red;">{{Emailerror}}</h6>
+
+   <div class="form-group">
+    <label for="address" style="color: white;"> address</label>
+    <input id="address" name="address" class="form-control" [(ngModel)]="faculty.address"/>
+   </div>
+   <div class="form-group">
+    <label for="salary" style="color: white;">salary</label>
+    <input id="salary" name="salary" (blur)="salaryvalid($event)" class="form-control" [(ngModel)]="faculty.salary"/>
+   </div>
+ <h6 style="color: red;">{{salaryerror}}</h6>
+
+   <div class="mb-3">
+    <label for="deptId" class="form-label" style="color: white;">Department</label>
+    <select class="form-select" #deptId="ngModel" name="deptId" [(ngModel)]="faculty.deptId" required>
+        <option value=null>Select Department</option>
+        <option value="{{dept.deptId}}" *ngFor="let dept of departments">{{dept.deptName}}</option>
+    </select>
+</div>
+  
+  
+ 
+      <button class="btn btn-primary" (click)="updatedata(form)" *ngIf="buttonview === 0">Update  </button>    
+           <button class="btn btn-primary" (click)="postdata(form)" *ngIf="buttonview === 1">Add  </button> 
+ 
+   </form>
+   </div>
+    
+<!-- LIST -->
+<table class="rwd-table" >
+    <tr>
+      <th>Faculty Id</th>
+      <th>Faculty Name</th>
+      <th>Phone</th>
+      <th>Email  </th>
+      <th>Address  </th>
+      <th>Salary  </th>
+      <th>Department  </th>
+
+
+    </tr>
+    <tr *ngFor="let item of faculties" >
+      <th style="color: white;">{{item.facultyId}}</th>
+      <th style="color: white;">{{item.name}}</th>
+      <th style="color: white;">{{item.phone}}</th>
+
+      <th style="color: white;">{{item.email}}</th>
+      <th style="color: white;">{{item.address}}</th>
+      <th style="color: white;">{{item.salary}}</th>
+      <th style="color: white;">{{item.deptName}}</th>
+
+
+     
+     <th> <a [routerLink]="[]" (click)="Edit(item)" ><i class="fa-solid fa-pen-to-square"></i></a></th>
+  
+     <th> <a [routerLink]="[]"  (click)="Delete(item)"><i class="fa-solid fa-trash-can"></i></a></th>
+     
+    </tr>
+    
+  </table>

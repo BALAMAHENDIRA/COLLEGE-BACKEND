@@ -15,8 +15,6 @@ namespace College_Management.Models
         public decimal? Salary { get; set; }
         public int? DeptId { get; set; }
 
-
-
         public virtual Department Dept { get; set; }
     }
 }

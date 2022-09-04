@@ -32,7 +32,7 @@ namespace College_Management.Controller
                            {
                              StudentId = s.StudentId,
                                MarkId = t.MarkId,
-                               Name = s.Name,
+                               RollNumber = s.RollNumber,
                                Sem1 = t.Sem1,
                                Sem2 = t.Sem2,
                                Sem3 = t.Sem3,
@@ -62,7 +62,6 @@ namespace College_Management.Controller
         }
 
         // PUT: api/Marks/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMark(int id, Mark mark)
         {
@@ -85,7 +84,6 @@ namespace College_Management.Controller
         }
 
         // POST: api/Marks
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public bool PostMark(Mark mark)
         {
@@ -114,6 +112,24 @@ namespace College_Management.Controller
         private bool MarkExists(int id)
         {
             return _context.Marks.Any(e => e.MarkId == id);
+        }
+
+        [HttpGet]
+        [Route ("GetStudentsByMarks")]
+
+        public IActionResult GetStudentsByMarks()
+        {
+            var marks = _context.Marks.ToList();
+            var students = _context.Students.ToList();
+
+            foreach (var item in marks)
+            {
+                Mark obj = marks.Where(x => x.StudentId == item.StudentId).SingleOrDefault();
+                Student studentobj = students.Where(x => x.StudentId == obj.StudentId).SingleOrDefault();
+                students.Remove(studentobj);
+            }
+
+            return Ok(students);
         }
     }
 }

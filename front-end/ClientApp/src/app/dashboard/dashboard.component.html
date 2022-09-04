@@ -1,0 +1,43 @@
+
+
+<div class="admin" >
+    <header class="admin__header" style="float:right">
+        
+        <div class="toolbar" style="float:right">
+            
+            <a href="#" class="btn btn--primary logout"  >Log Out</a>
+              
+             
+        </div>
+    </header>
+    <nav class="admin__nav">
+        <ul class="menu">
+            <li class="menu__title">Dashboard</li>
+            <li class="menu__item">
+                <a class="menu__link" (click)="onTabClick(1)">Students</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" (click)="onTabClick(2)">Departments</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" (click)="onTabClick(3)">Courses</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" (click)="onTabClick(4)">Faculty</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" (click)="onTabClick(5)">Marks</a>
+            </li>
+        </ul>
+    </nav>
+    <main class="admin__main">
+        
+        <app-students  *ngIf="tabIndex === 1"></app-students>
+        <app-department  *ngIf="tabIndex === 2"></app-department>
+        <app-course *ngIf="tabIndex === 3"></app-course>
+        <app-faculty *ngIf="tabIndex === 4"></app-faculty>  
+        <app-marksdash *ngIf="tabIndex === 5"></app-marksdash>  
+
+    </main>
+    
+</div>

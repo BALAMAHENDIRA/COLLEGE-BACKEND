@@ -47,6 +47,34 @@ namespace College_Management.Controller
             return  Ok(e);
         }
 
+        //GET: Student by department id
+        [HttpGet]
+        [Route ("GetStudentsbyDepartmentID")]
+        public async Task<ActionResult<IEnumerable<Studentsmark>>> GetStudentsbyDepartmentID(int deptid)
+        {
+            var e = await (from t in _context.Departments
+                           join s in _context.Students on t.DeptId equals s.DeptId
+                           where s.DeptId == deptid
+                           select new Studentsmark
+
+                           {
+                               StudentId = s.StudentId,
+                               Name = s.Name,
+                               RollNumber = s.RollNumber,
+                               Email = s.Email,
+                               Phone = s.Phone,
+                               Password = s.Password,
+                               Dob = s.Dob,
+                               Address = s.Address,
+                               CurrentYear = s.CurrentYear,
+                               DeptName = t.DeptName,
+
+
+
+                           }).ToListAsync();
+            return Ok(e);
+        }
+
         // GET: api/Students/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(int id)
@@ -62,7 +90,6 @@ namespace College_Management.Controller
         }
 
         // PUT: api/Students/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public IActionResult PutStudent(int id, Student student)
         {
@@ -82,7 +109,6 @@ namespace College_Management.Controller
         }
 
         // POST: api/Students
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public  bool PostStudent(Student student)
         {
@@ -93,19 +119,13 @@ namespace College_Management.Controller
         }
 
         // DELETE: api/Students/5
-        [HttpGet]
-        [Route("DeleteStudent")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStudent(int id)
         {
-            Mark obj = await _context.Marks.Where(x => x.StudentId == id).SingleOrDefaultAsync();
-            if(obj != null)
-            {
-                _context.Marks.Remove(obj);
-                await _context.SaveChangesAsync();
-            }
-           
+            var mark = await _context.Marks.FindAsync(id);
+            _context.Marks.Remove(mark);
 
-            Student student = await _context.Students.FindAsync(id);
+            var student = await _context.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();
@@ -114,14 +134,18 @@ namespace College_Management.Controller
             _context.Students.Remove(student);
             await _context.SaveChangesAsync();
 
-            return Ok();
+            return NoContent();
         }
+
+
 
         private bool StudentExists(int id)
         {
             return _context.Students.Any(e => e.StudentId == id);
         }
 
+
+        //Checking Roll number and password for checking marks
         [HttpGet]
         [Route("CheckResult")]
         public async Task<IActionResult> CheckResult(string rollno, string password)
@@ -155,11 +179,13 @@ namespace College_Management.Controller
             return Ok(result);
         }
 
+
+
+        //Get Marks By Roll Number
         [HttpGet]
         [Route("GetMarks")]
         public  IActionResult GetMarks(string rollno)
         {
-            //Student obj = await _context.Students.Where(x => x.RollNumber == rollno).SingleOrDefaultAsync();
 
             
                 var e = (from t in _context.Marks
@@ -192,6 +218,8 @@ namespace College_Management.Controller
             return Ok(e);
         }
 
+
+        //Admin Logging
         [HttpGet]
         [Route("AdminLogin")]
         public   IActionResult AdminLogin(string rollno, string password)

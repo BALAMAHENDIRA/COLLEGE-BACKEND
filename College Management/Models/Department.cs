@@ -9,7 +9,6 @@ namespace College_Management.Models
     {
         public Department()
         {
-            Courses = new HashSet<Course>();
             Faculties = new HashSet<Faculty>();
             Students = new HashSet<Student>();
         }
@@ -17,7 +16,6 @@ namespace College_Management.Models
         public int DeptId { get; set; }
         public string DeptName { get; set; }
 
-        public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<Faculty> Faculties { get; set; }
         public virtual ICollection<Student> Students { get; set; }
     }

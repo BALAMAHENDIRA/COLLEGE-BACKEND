@@ -51,11 +51,6 @@ namespace College_Management.Models
                 entity.Property(e => e.Duration)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.Dept)
-                    .WithMany(p => p.Courses)
-                    .HasForeignKey(d => d.DeptId)
-                    .HasConstraintName("FK__Course__DeptId__25869641");
             });
 
             modelBuilder.Entity<Department>(entity =>

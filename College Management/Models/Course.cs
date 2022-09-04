@@ -16,9 +16,7 @@ namespace College_Management.Models
         public string CourseName { get; set; }
         public string Duration { get; set; }
         public string CourseFee { get; set; }
-        public int? DeptId { get; set; }
 
-        public virtual Department Dept { get; set; }
         public virtual ICollection<Student> Students { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace College_Management.Controller
         public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
         {
             var e = await (from t in _context.Courses
-                           join s in _context.Departments on t.DeptId equals s.DeptId
+                            
 
                            select new Studentsmark
 
@@ -34,8 +34,8 @@ namespace College_Management.Controller
                              CourseName = t.CourseName,
                              Duration = t.Duration,
                              CourseFee = t.CourseFee,
-                             DeptId = t.DeptId,
-                             DeptName = s.DeptName
+                             
+                              
 
                            }).ToListAsync();
             return Ok(e);
@@ -64,7 +64,7 @@ namespace College_Management.Controller
             obj.CourseName = course.CourseName;
             obj.Duration = course.Duration;
             obj.CourseFee = course.CourseFee;
-            obj.DeptId = course.DeptId;
+           
 
 
 

@@ -1,0 +1,113 @@
+
+<h1>MARKS</h1>
+
+<a  [routerLink]="[]" (click)="viewform(1)" ><i class="fa-solid fa-circle-plus  fa-2x" ></i></a>
+
+  <div class="container" *ngIf="tabIndex === 1" style="width: 300px; ">
+    <h2 style="color: rgb(17, 200, 0);">Add mark</h2>
+   <form #form="ngForm">
+    <div class="mb-3">
+      <label for="studentId" class="form-label" style="color: white;">Student Rollnumber</label>
+      <select class="form-select" #studentId="ngModel" name="studentId" [(ngModel)]="mark.studentId" required>
+          <option value=null>Select Student</option>
+          <option value="{{student.studentId}}" *ngFor="let student of students">{{student.rollNumber}}</option>
+      </select>
+  </div>
+    <div class="form-group">
+    <label for="sem1" style="color: white;">SEMESTER 1</label>
+    <input type="text" id="sem1" name="sem1" (blur)="cgpa1($event)" (blur)="markvalid1($event)"     class="form-control" [(ngModel)]="mark.sem1"/>
+   </div>
+   <h6 style="color: red;">{{markerror1}}</h6>
+   <div class="form-group">
+    <label for="sem2" style="color: white;">SEMESTER 2</label>
+    <input  type="text" id="sem2" name="sem2" (blur)="cgpa2($event)"  (blur)="markvalid2($event)"   class="form-control" [(ngModel)]="mark.sem2"/>
+   </div>
+   <h6 style="color: red;">{{markerror2}}</h6>
+
+   <div class="form-group">
+    <label for="sem3" style="color: white;">SEMESTER 3</label>
+    <input type="text" id="sem3" name="sem3" (blur)="cgpa3($event)" (blur)="markvalid3($event)"   class="form-control" [(ngModel)]="mark.sem3"/>
+   </div>
+   <h6 style="color: red;">{{markerror3}}</h6>
+
+   <div class="form-group">
+    <label for="sem4" style="color: white;">SEMESTER 4</label>
+    <input type="text" id="sem4" name="sem4" (blur)="cgpa4($event)" (blur)="markvalid4($event)"   class="form-control" [(ngModel)]="mark.sem4"/>
+   </div>
+   <h6 style="color: red;">{{markerror4}}</h6>
+
+   <div class="form-group">
+    <label for="sem5" style="color: white;">SEMESTER 5</label>
+    <input type="text" id="sem5" name="sem5" (blur)="cgpa5($event)" (blur)="markvalid5($event)"   class="form-control" [(ngModel)]="mark.sem5"/>
+   </div>
+   <h6 style="color: red;">{{markerror5}}</h6>
+
+   <div class="form-group">
+    <label for="sem6" style="color: white;">SEMESTER 6</label>
+    <input type="text" id="sem6" name="sem6" (blur)="cgpa6($event)" (blur)="markvalid6($event)"  class="form-control" [(ngModel)]="mark.sem6"/>
+   </div>
+   <h6 style="color: red;">{{markerror6}}</h6>
+
+   <div class="form-group">
+    <label for="sem7" style="color: white;">SEMESTER 7</label>
+    <input type="text" id="sem7" name="sem7" (blur)="cgpa7($event)" (blur)="markvalid7($event)"   class="form-control" [(ngModel)]="mark.sem7"/>
+   </div>
+   <h6 style="color: red;">{{markerror7}}</h6>
+
+   <div class="form-group">
+    <label for="sem8" style="color: white;">SEMESTER 8</label>
+    <input type="text" id="sem8" name="sem8" (blur)="cgpa8($event)" (blur)="markvalid8($event)"  class="form-control" [(ngModel)]="mark.sem8"/>
+   </div>
+   <h6 style="color: red;">{{markerror8}}</h6>
+
+ 
+    
+   <h3 style="color: white;">CGPA : {{result}}</h3>
+  
+ 
+    <button class="btn btn-primary" (click)="postdata(form)" *ngIf="buttonview === 1">Add Marks</button>
+    <button class="btn btn-primary" (click)="updatedata(form)" *ngIf="buttonview === 0">Update Marks</button>     
+   
+   </form>
+   
+   </div>
+
+
+<!-- LIST -->
+<table class="rwd-table" >
+    <tr>
+      <th>Mark Id</th>
+      <th>Roll Number</th>
+      <th>semester 1</th>
+      <th>semester 2</th>
+      <th>semester 3</th>
+      <th>semester 4</th>
+      <th>semester 5</th>
+      <th>semester 6</th>
+      <th>semester 7</th>
+      <th>semester 8</th>
+      <th>CGPA</th>
+    </tr>
+    <tr *ngFor="let item of marks" >
+      <th style="color: white;">{{item.markId}}</th>
+      <th style="color: white;">{{item.rollNumber}}</th>
+      <th style="color: white;">{{item.sem1}}</th>
+      <th style="color: white;">{{item.sem2}}</th>
+      <th style="color: white;">{{item.sem3}}</th>
+      <th style="color: white;">{{item.sem4}}</th>
+      <th style="color: white;">{{item.sem5}}</th>
+      <th style="color: white;">{{item.sem6}}</th>
+      <th style="color: white;">{{item.sem7}}</th>
+      <th style="color: white;">{{item.sem8}}</th>
+      <th style="color: rgb(255, 0, 0);">{{item.cgpa}}</th>
+
+     
+     <th> <a [routerLink]="[]" (click)="Edit(item)"  ><i class="fa-solid fa-pen-to-square"></i></a></th>
+  
+     <th> <a [routerLink]="[]" (click)="Delete(item)" ><i class="fa-solid fa-trash-can"></i></a></th>
+     
+    </tr>
+    
+  </table>
+
+  

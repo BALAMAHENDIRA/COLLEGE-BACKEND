@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+
+    <app-header></app-header>
+
+<!-- Header -->
+<header class="w3-container w3-center"  style="padding:128px 16px" >
+  <h1 class="w3-margin w3-jumbo"><b>STUDENT</b></h1>
+  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top" routerLink="/result">Results</button>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>STUDENT WELFARE</h1>
+      <h5 class="w3-padding-32">The spirit of being in TECHVERSITY is the freedom to pursue academics, other personality development extra curricular activities.The best part about NIT PY is that the intake of students is from all over India of different states/culture/language. As most of the students stay in hostel, it gives them a chance to really know about each other. Everyone learns to respect the different lifestyle of each individual. Participation in Extracurricular activities like NCC, NSS, literary clubs, innovation club, photographic clubs and students' chapters of professional societies give student ample oppurtunity for developing leadership qualities. Students of the campus are regulated by Student Conduct and Disciplinary Code and by Rules and Regulations for Hostel Residents</h5>
+    </div>
+
+    <div class="w3-third ">
+      <i class="logo"> <img src="https://logodix.com/logo/2008997.png" alt=""></i>
+    </div>
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-third ">
+        <i class="logo"> <img src="https://library.kissclipart.com/20180905/ktw/kissclipart-football-clipart-football-player-sports-e6458728d4f6b319.png" alt=""></i>
+    </div>
+
+    <div class="w3-twothird">
+      <h1>SPORTS AND GAMES</h1>
+      <h5 class="w3-padding-32">Sports activities help the students to cast their personality through physical, emotional and social well-being. A true sportsman will have an ability to observe, analyze and take a decision in a spurt of moment. Sports and Games will thus inculcate interpersonal relationship, team work, and cooperative workmanship required for an engineer and to lead a high standards of social and professional life.</h5>
+
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+
+
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div class="login-box">
+    <h2>Result Portal</h2>
+    <form>
+      <div><h6 style="color: red;">{{error}}</h6></div>
+      <div class="user-box" >
+        <input type="text" name=""  (keyup.enter)="update($event)" (blur)="update($event)" required>
+        <label>Roll Number</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="" (keyup.enter)="updatePassword($event)" (blur)="updatePassword($event)" required="">
+        <label>Password</label>
+      </div>
+      <a (click)="Submit()">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Check Result
+      </a>
+    </form>
+  </div>
